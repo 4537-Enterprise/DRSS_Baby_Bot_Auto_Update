@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.drivetrains.MecanumDrive;
+import org.firstinspires.ftc.teamcode.subsystems.revhub.RevHub;
 import org.openftc.revextensions2.ExpansionHubEx;
 
 /**
@@ -18,6 +19,7 @@ public class StraferBot {
     private HardwareMap map;
 
     public MecanumDrive drive;
+    public RevHub controlHub;
 
     private Telemetry telemetry;
     TelemetryPacket packet = new TelemetryPacket();
@@ -28,10 +30,20 @@ public class StraferBot {
         this.telemetry = telemetry;
 
         drive = new MecanumDrive(map, telemetry);
+        controlHub = new RevHub(map, "Control Hub");
     }
 
-    public void updateDriveTrain(double leftStickX, double leftStickY, double rightStickX) {
-
+    public void updateDriveTrain(GamepadEx gamepad) {
+        drive.setMotorPowers(gamepad.getLeftX(), gamepad.getLeftY(), gamepad.getRightX());
     }
 
+    public void checkWarnings() {
+        if (controlHub.checkTempWarning()) {
+            kill();
+        }
+    }
+
+    public void kill() {
+        drive.stopMotors();
+    }
 }

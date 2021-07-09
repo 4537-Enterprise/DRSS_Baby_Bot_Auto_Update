@@ -75,20 +75,27 @@ public class MecanumDrive {
         motorPowers[2] = y - x + r;
         motorPowers[3] = y + x + r;
 
-        sortedMotorPowers[0] = motorPowers[0];
-        sortedMotorPowers[1] = motorPowers[1];
-        sortedMotorPowers[2] = motorPowers[2];
-        sortedMotorPowers[3] = motorPowers[3];
+        sortedMotorPowers[0] = Math.abs(motorPowers[0]);
+        sortedMotorPowers[1] = Math.abs(motorPowers[1]);
+        sortedMotorPowers[2] = Math.abs(motorPowers[2]);
+        sortedMotorPowers[3] = Math.abs(motorPowers[3]);
         Arrays.sort(sortedMotorPowers);
 
         if (Math.abs(sortedMotorPowers[3]) > 1) {
-            motorPowers[0] /= Math.abs(sortedMotorPowers[3]);
-            motorPowers[1] /= Math.abs(sortedMotorPowers[3]);
-            motorPowers[2] /= Math.abs(sortedMotorPowers[3]);
-            motorPowers[3] /= Math.abs(sortedMotorPowers[3]);
+            motorPowers[0] /= sortedMotorPowers[3];
+            motorPowers[1] /= sortedMotorPowers[3];
+            motorPowers[2] /= sortedMotorPowers[3];
+            motorPowers[3] /= sortedMotorPowers[3];
         }
 
         runMotors();
+    }
+
+    public void stopMotors() {
+        motors[0].setPower(0);
+        motors[1].setPower(0);
+        motors[2].setPower(0);
+        motors[3].setPower(0);
     }
 
     private void runMotors() {
