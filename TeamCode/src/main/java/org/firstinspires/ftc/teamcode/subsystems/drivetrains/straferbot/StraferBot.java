@@ -9,6 +9,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.subsystems.drivetrains.MecanumDrive;
 import org.firstinspires.ftc.teamcode.subsystems.revhub.RevHub;
+import org.firstinspires.ftc.teamcode.subsystems.telemetry.TelemetryHeaders;
 import org.openftc.revextensions2.ExpansionHubEx;
 
 /**
@@ -22,6 +23,8 @@ public class StraferBot {
     public RevHub controlHub;
 
     private Telemetry telemetry;
+    TelemetryHeaders headers = new TelemetryHeaders();
+
     TelemetryPacket packet = new TelemetryPacket();
     FtcDashboard dashboard = FtcDashboard.getInstance();
 
@@ -30,15 +33,25 @@ public class StraferBot {
         this.telemetry = telemetry;
 
         drive = new MecanumDrive(map, telemetry);
-        controlHub = new RevHub(map, "Control Hub");
+        controlHub = new RevHub(map, telemetry,"Control Hub");
     }
 
     public void updateDriveTrain(GamepadEx gamepad) {
         drive.setMotorPowers(gamepad.getLeftX(), gamepad.getLeftY(), gamepad.getRightX());
     }
 
+    public void updateTelemetry() {
+        telemetry.addLine(headers.power);
+        controlHub.hubPowerMonitor();
+
+        telemetry.addLine(headers.temperature);
+        controlHub.hubTempMonitor();
+
+        telemetry.update();
+    }
+
     public void checkWarnings() {
-        if (controlHub.checkTempWarning()) {
+        if (controlHub.checkHubTempWarning()) {
             kill();
         }
     }

@@ -92,10 +92,12 @@ public class MecanumDrive {
     }
 
     public void stopMotors() {
-        motors[0].setPower(0);
-        motors[1].setPower(0);
-        motors[2].setPower(0);
-        motors[3].setPower(0);
+        motorPowers[0] = 0;
+        motorPowers[1] = 0;
+        motorPowers[2] = 0;
+        motorPowers[3] = 0;
+
+        runMotors();
     }
 
     private void runMotors() {

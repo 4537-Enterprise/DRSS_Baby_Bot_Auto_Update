@@ -25,6 +25,7 @@ public class StraferBotTeleOp extends LinearOpMode {
 
         while(opModeIsActive()) {
             robot.updateDriveTrain(driveTrainController);
+            robot.updateTelemetry();
             robot.checkWarnings();
         }
     }
