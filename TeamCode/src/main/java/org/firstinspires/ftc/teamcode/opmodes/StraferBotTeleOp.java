@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import org.firstinspires.ftc.teamcode.opmodes.controlSchemes.TestControlScheme;
+import org.firstinspires.ftc.teamcode.opmodes.controlSchemes.ControlSchemes;
 import org.firstinspires.ftc.teamcode.subsystems.drivetrains.straferbot.StraferBot;
 
 /**
@@ -15,7 +15,7 @@ public class StraferBotTeleOp extends LinearOpMode {
 
     GamepadEx gamepadEx1 = new GamepadEx(gamepad1);
     GamepadEx gamepadEx2 = new GamepadEx(gamepad2);
-    TestControlScheme control = new TestControlScheme(gamepadEx1, gamepadEx2);
+    ControlSchemes controls = new ControlSchemes(gamepadEx1, gamepadEx2, ControlSchemes.ControlScheme.TestControlScheme);
 
     @Override
     public void runOpMode() throws InterruptedException {
@@ -28,15 +28,15 @@ public class StraferBotTeleOp extends LinearOpMode {
             robot.updateTelemetry();
             robot.checkWarnings();
 
-            if (control.testButton.wasJustPressed()) {
+            if (controls.testButton.wasJustPressed()) {
                 //do something
             }
 
-            if (control.testButton2.wasJustPressed()) {
+            if (controls.testButton2.wasJustPressed()) {
                 //do something
             }
 
-            control.readButtons();
+            controls.readButtons();
         }
     }
 }
