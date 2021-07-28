@@ -33,23 +33,23 @@ public class ControlSchemes {
         }
     }
 
-    public void testControlScheme() {
+    void testControlScheme() {
         testButton = new ButtonReader(
-                gamepadEx1, GamepadKeys.Button.A
+            gamepadEx1, GamepadKeys.Button.A
         );
 
         testButton2 = new ButtonReader(
-                gamepadEx1, GamepadKeys.Button.B
+            gamepadEx1, GamepadKeys.Button.B
         );
     }
 
-    public void controlScheme2() {
+    void controlScheme2() {
         testButton = new ButtonReader(
-                gamepadEx1, GamepadKeys.Button.A
+            gamepadEx1, GamepadKeys.Button.A
         );
 
         testButton2 = new ButtonReader(
-                gamepadEx1, GamepadKeys.Button.B
+            gamepadEx1, GamepadKeys.Button.B
         );
     }
 
