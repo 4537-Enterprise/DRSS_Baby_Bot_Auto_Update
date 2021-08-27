@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.arcrobotics.ftclib.gamepad.GamepadEx;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.opmodes.controlSchemes.ControlSchemes;
 import org.firstinspires.ftc.teamcode.subsystems.drivetrains.straferbot.StraferBot;
@@ -9,6 +10,7 @@ import org.firstinspires.ftc.teamcode.subsystems.drivetrains.straferbot.StraferB
 /**
  * Created by Antoine on 7/8/2021
  */
+@TeleOp
 public class StraferBotTeleOp extends LinearOpMode {
 
     StraferBot robot;
