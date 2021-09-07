@@ -17,8 +17,8 @@ import org.firstinspires.ftc.teamcode.subsystems.telemetry.TelemetryHeaders;
 @TeleOp(name = "CompetitionRRTeleOp", group = "Test")
 public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 
-	GamepadEx gamepadEx1 = new GamepadEx(gamepad1);
-	GamepadEx gamepadEx2 = new GamepadEx(gamepad2);
+	//GamepadEx gamepadEx1 = new GamepadEx(gamepad1);
+	//GamepadEx gamepadEx2 = new GamepadEx(gamepad2);
 
 	double speedModifier = 1;
 
@@ -28,9 +28,9 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 		ALIGN_TO_POINT
 	}
 
-	ButtonReader driveModeButton = new ButtonReader(
+	/*ButtonReader driveModeButton = new ButtonReader(
 			gamepadEx1, GamepadKeys.Button.A
-	);
+	);*/
 
 	TelemetryHeaders headers = new TelemetryHeaders();
 
@@ -55,21 +55,18 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 				case STANDARD_DRIVE:
 					drive.setWeightedDrivePower(
 							new Pose2d(
-									-(gamepadEx1.getLeftY() * speedModifier),
-									-(gamepadEx1.getLeftX()* speedModifier),
-									-(gamepadEx1.getRightX()* speedModifier)
+									-gamepad1.left_stick_y,
+									-gamepad1.left_stick_x,
+									-gamepad1.right_stick_x
 							)
 					);
 
-					//Switch to field centric on button press
-					if (driveModeButton.wasJustPressed()) driveMode = driveModes.FIELD_CENTRIC_DRIVE;
-
 				case FIELD_CENTRIC_DRIVE:
-					//Create a vector from the gamepad x/y inputs
+					/*//Create a vector from the gamepad x/y inputs
 					//Then, rotate that vector by the inverse of that heading
 					Vector2d input = new Vector2d(
-						-(gamepadEx1.getLeftY() * speedModifier),
-						-(gamepadEx1.getLeftX()* speedModifier)
+						-(gamepad1.left_stick_y),
+						-(gamepad1.left_stick_x)
 					).rotated(-poseEstimate.getHeading());
 
 					//Pass in the rotated input + right stick value for rotation
@@ -77,12 +74,9 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 							new Pose2d(
 									input.getX(),
 									input.getY(),
-									-(gamepadEx1.getRightX()* speedModifier)
+									-(gamepad1.right_stick_x)
 							)
-					);
-
-					//Switch to standard drive on button press
-					if (driveModeButton.wasJustPressed()) driveMode = driveModes.STANDARD_DRIVE;
+					);*/
 
 				case ALIGN_TO_POINT:
 
@@ -101,7 +95,11 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 			telemetry.update();
 
 			//Controller Update
-			gamepadEx1.readButtons();
+			//gamepadEx1.readButtons();
+			//Switch to standard drive on button press
+			//if (gamepad1.b) {driveMode = driveModes.STANDARD_DRIVE;}
+			//Switch to field centric on button press
+			//if (gamepad1.a) {driveMode = driveModes.FIELD_CENTRIC_DRIVE;}
 		}
 	}
 }
