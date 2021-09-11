@@ -40,6 +40,10 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 									-gamepad1.right_stick_x
 							)
 					);
+
+					if (gamepad1.b) {
+						robot.driveMode = CompBot.driveModes.FIELD_CENTRIC_DRIVE;
+					}
 					break;
 
 				case FIELD_CENTRIC_DRIVE:
@@ -58,6 +62,10 @@ public class CompetitionBotRoadRunnerTeleOp extends LinearOpMode{
 									-(gamepad1.right_stick_x)
 							)
 					);
+
+					if (gamepad1.a) {
+						robot.driveMode = CompBot.driveModes.STANDARD_DRIVE;
+					}
 					break;
 
 				case ALIGN_TO_POINT:

@@ -8,6 +8,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 import org.firstinspires.ftc.teamcode.opmodes.CompetitionBotRoadRunnerTeleOp;
+import org.firstinspires.ftc.teamcode.subsystems.distancetracker.DistanceTracker;
 import org.firstinspires.ftc.teamcode.subsystems.roadrunner.competitionchassis.CompDrive;
 import org.firstinspires.ftc.teamcode.subsystems.roadrunner.competitionchassis.CompPoseStorage;
 import org.firstinspires.ftc.teamcode.subsystems.telemetry.TelemetryHeaders;
@@ -29,6 +30,8 @@ public class CompBot {
     }
     public driveModes driveMode = driveModes.STANDARD_DRIVE;
 
+    //DistanceTracker distanceTracker;
+
     private Telemetry telemetry;
     TelemetryHeaders headers = new TelemetryHeaders();
 
@@ -42,6 +45,8 @@ public class CompBot {
         drive = new CompDrive(map); //Initialize the drivetrain
         drive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER); //Disable velocity control because it is not necessary in TeleOp
         drive.setPoseEstimate(CompPoseStorage.currentPose); //Retrieve our pose from the Competition Pose Storage static field
+
+        //distanceTracker = new DistanceTracker(CompPoseStorage.currentPose);
     }
 
     public void update() {
